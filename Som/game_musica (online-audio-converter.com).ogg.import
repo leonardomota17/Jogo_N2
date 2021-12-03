@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/game_musica (online-audio-converter.com).ogg-bce24dff2152f4323941b6ba4ef73c8c.oggstr"
+
+[deps]
+
+source_file="res://Som/game_musica (online-audio-converter.com).ogg"
+dest_files=[ "res://.import/game_musica (online-audio-converter.com).ogg-bce24dff2152f4323941b6ba4ef73c8c.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

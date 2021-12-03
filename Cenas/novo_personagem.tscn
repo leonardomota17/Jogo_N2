@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Personagens/Personagem Principal/POWEUP.png" type="Texture" id=1]
+[ext_resource path="res://Script/script_personagem_novo.gd" type="Script" id=2]
+[ext_resource path="res://Som/EnemyHurt.wav" type="AudioStream" id=3]
+[ext_resource path="res://Som/Death.wav" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30.5157, 99.6687 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "ataque"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 2, 1086, 213, 226 ), Rect2( 711, 1084, 216, 227 ), Rect2( 990, 1090, 219, 222 ), Rect2( 1260, 1096, 220, 215 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "cair"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 1496, 781, 246, 180 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3, 353, 213, 226 ), Rect2( 259, 359, 218, 221 ), Rect2( 496, 352, 232, 228 ), Rect2( 745, 352, 216, 227 ), Rect2( 993, 358, 219, 222 ), Rect2( 1252, 364, 220, 215 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 93, 62, 157, 234 ), Rect2( 329, 62, 157, 234 ), Rect2( 555, 62, 157, 234 ), Rect2( 756, 62, 157, 234 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 20, 749, 169, 209 ), Rect2( 240, 717, 184, 244 ), Rect2( 442, 783, 246, 180 ), Rect2( 742, 780, 212, 176 ), Rect2( 1042, 755, 210, 205 ), Rect2( 1260, 791, 208, 168 ), Rect2( 1496, 781, 246, 180 ), Rect2( 1762, 741, 178, 218 ), Rect2( 2010, 749, 169, 209 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 461.854, 304.343 )
+scale = Vector2( 0.359999, 0.359999 )
+
+[node name="personagem_novo" type="KinematicBody2D" parent="."]
+collision_layer = 33
+collision_mask = 33
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="personagem_novo"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 2, 1086, 213, 226 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="personagem_novo"]
+position = Vector2( -1.1676, 0 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="personagem_novo"]
+autoplay = "ataque"
+anims/ataque = SubResource( 2 )
+anims/cair = SubResource( 3 )
+anims/correndo = SubResource( 4 )
+anims/parado = SubResource( 5 )
+anims/pulando = SubResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="personagem_novo"]
+scale = Vector2( -5.55557, -5.55557 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="Position2D" type="Position2D" parent="personagem_novo"]
+position = Vector2( 73.3073, -2.75592 )
+
+[node name="tiro" type="AudioStreamPlayer2D" parent="personagem_novo"]
+stream = ExtResource( 3 )
+
+[node name="morte" type="AudioStreamPlayer2D" parent="personagem_novo"]
+stream = ExtResource( 4 )
+[connection signal="animation_finished" from="personagem_novo/AnimationPlayer" to="personagem_novo" method="fim_animacao"]

@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Personagens/Personagem Principal/POWEUP.png" type="Texture" id=1]
+[ext_resource path="res://Script/script_personagem_novo.gd" type="Script" id=2]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "correndo"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 3, 353, 213, 226 ), Rect2( 259, 359, 218, 221 ), Rect2( 496, 352, 232, 228 ), Rect2( 745, 352, 216, 227 ), Rect2( 993, 358, 219, 222 ), Rect2( 1252, 364, 220, 215 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 93, 62, 157, 234 ), Rect2( 329, 62, 157, 234 ), Rect2( 555, 62, 157, 234 ), Rect2( 756, 62, 157, 234 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "pulando"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Rect2( 20, 749, 169, 209 ), Rect2( 240, 717, 184, 244 ), Rect2( 442, 783, 246, 180 ), Rect2( 742, 780, 212, 176 ), Rect2( 1042, 755, 210, 205 ), Rect2( 1260, 791, 208, 168 ), Rect2( 1496, 781, 246, 180 ), Rect2( 1762, 741, 178, 218 ), Rect2( 2010, 749, 169, 209 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 461.854, 304.343 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="personagem_novo" type="KinematicBody2D" parent="Area2D"]
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite" type="Sprite" parent="Area2D/personagem_novo"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 3, 353, 213, 226 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D/personagem_novo"]
+polygon = PoolVector2Array( -11.5675, -110.794, -30.9081, -100.704, -44.3625, -52.7726, -31.749, -30.0683, -14.0902, -12.4095, -9.88571, 1.04483, -34.2717, 14.4992, -44.3625, 22.9081, -46.0443, 36.3625, -40.9989, 49.8168, -33.4308, 64.1121, -40.158, 75.0437, -50.2487, 90.1798, -59.4986, 102.793, -77.1574, 117.089, -40.158, 107.839, -38.4762, 103.634, -18.2947, 105.316, -20.8174, 96.0661, -2.31766, 63.2711, 16.1821, 78.4073, 11.9776, 106.157, 40.5681, 106.157, 31.3182, 91.8616, 31.3182, 69.9983, 22.9092, 58.2258, 29.6364, 58.2258, 32.1591, 48.9759, 34.6818, 43.0897, 21.2274, 40.567, 22.9092, 13.6583, 17.8639, 1.04483, 44.7726, -13.2504, 56.5451, -25.0229, 58.2269, -37.6364, 79.2493, -81.363, 64.1132, -99.0219, 42.2498, -112.476, 17.023, -116.681 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D/personagem_novo"]
+autoplay = "correndo"
+anims/correndo = SubResource( 1 )
+anims/parado = SubResource( 2 )
+anims/pulando = SubResource( 3 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -11.5675, -110.794, -30.9081, -100.704, -44.3625, -52.7726, -31.749, -30.0683, -14.0902, -12.4095, -9.88571, 1.04483, -34.2717, 14.4992, -44.3625, 22.9081, -46.0443, 36.3625, -40.9989, 49.8168, -33.4308, 64.1121, -40.158, 75.0437, -50.2487, 90.1798, -59.4986, 102.793, -77.1574, 117.089, -40.158, 107.839, -38.4762, 103.634, -18.2947, 105.316, -20.8174, 96.0661, -2.31766, 63.2711, 16.1821, 78.4073, 11.9776, 106.157, 40.5681, 106.157, 31.3182, 91.8616, 31.3182, 69.9983, 22.9092, 58.2258, 29.6364, 58.2258, 32.1591, 48.9759, 34.6818, 43.0897, 21.2274, 40.567, 22.9092, 13.6583, 17.8639, 1.04483, 44.7726, -13.2504, 56.5451, -25.0229, 58.2269, -37.6364, 79.2493, -81.363, 64.1132, -99.0219, 42.2498, -112.476, 17.023, -116.681 )

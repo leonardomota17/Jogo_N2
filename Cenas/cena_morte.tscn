@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Personagens/Personagem Principal/jump-shoot/256/jump-shoot2.png" type="Texture" id=1]
+[ext_resource path="res://Imagens/Bg_lab1.jpg" type="Texture" id=2]
+[ext_resource path="res://Font/VeniceClassic.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Script/script_morte.gd" type="Script" id=4]
+
+
+[sub_resource type="DynamicFont" id=1]
+size = 79
+outline_size = 4
+outline_color = Color( 0.027451, 0, 0, 1 )
+font_data = ExtResource( 3 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Fundo" type="Sprite" parent="."]
+position = Vector2( 1111.51, 186.534 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 459.02, 957.003 )
+rotation = -1.5722
+scale = Vector2( 0.666393, 0.631276 )
+texture = ExtResource( 1 )
+offset = Vector2( 760.446, 111.454 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 303.553
+margin_top = 166.287
+margin_right = 788.553
+margin_bottom = 286.287
+custom_fonts/normal_font = SubResource( 1 )
+custom_colors/default_color = Color( 0.988235, 0.027451, 0.027451, 1 )
+bbcode_enabled = true
+bbcode_text = "[shake freq=100] Você morreu!"
+text = " Você morreu!"
+__meta__ = {
+"_edit_use_anchors_": false
+}

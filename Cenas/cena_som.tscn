@@ -1,0 +1,147 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Som/game_musica (online-audio-converter.com).ogg" type="AudioStream" id=1]
+[ext_resource path="res://Font/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Imagens/MENU.png" type="Texture" id=3]
+[ext_resource path="res://Imagens/n5.png" type="Texture" id=4]
+[ext_resource path="res://Imagens/Fundo.png" type="Texture" id=5]
+[ext_resource path="res://textures/particle_examples/floaty_64.png" type="Texture" id=6]
+[ext_resource path="res://Script/script_conifgsom.gd" type="Script" id=7]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0740741, 0.925926, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.285784, 0.118134, 0.617188, 1, 0.448721, 0.331879, 0.679688, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 100.0
+angle_random = 1.0
+color_ramp = SubResource( 3 )
+anim_speed = 1.0
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 2 )
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1914.0
+margin_bottom = 935.0
+rect_scale = Vector2( 0.537789, 0.640387 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Personagem" type="Sprite" parent="."]
+position = Vector2( 516.322, 371.878 )
+scale = Vector2( 1.55646, 1.61607 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( -21.2659, -141.267 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( 17.9303, -141.465 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514.345, 496.279 )
+scale = Vector2( 0.0624784, 0.0624784 )
+texture = ExtResource( 4 )
+
+[node name="Control" type="Control" parent="."]
+margin_left = 322.275
+margin_top = 154.597
+margin_right = 362.275
+margin_bottom = 194.597
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 38.5866
+margin_top = 127.668
+margin_right = 313.587
+margin_bottom = 197.668
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="mute" type="CheckBox" parent="Control/VBoxContainer"]
+margin_right = 275.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 5 )
+pressed = true
+text = "Musica on"
+
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_top = 31.0
+margin_right = 275.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 6 )
+text = "Volume "
+align = 1
+
+[node name="volume" type="HSlider" parent="Control/VBoxContainer"]
+margin_top = 54.0
+margin_right = 275.0
+margin_bottom = 70.0
+min_value = -80.0
+max_value = 24.0
+
+[node name="voltar" type="Button" parent="Control/VBoxContainer"]
+margin_top = 74.0
+margin_right = 275.0
+margin_bottom = 99.0
+custom_fonts/font = SubResource( 7 )
+text = "Voltar"
+
+[node name="musica" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -19.358
+autoplay = true
+bus = "musica"
+[connection signal="toggled" from="Control/VBoxContainer/mute" to="." method="volume"]
+[connection signal="toggled" from="Control/VBoxContainer/mute" to="." method="mutar"]
+[connection signal="value_changed" from="Control/VBoxContainer/volume" to="." method="tamanho_volume"]
+[connection signal="pressed" from="Control/VBoxContainer/voltar" to="." method="voltar_menu"]

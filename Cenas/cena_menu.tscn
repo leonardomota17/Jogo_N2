@@ -1,0 +1,137 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Script/script_menu.gd" type="Script" id=1]
+[ext_resource path="res://Font/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Imagens/MENU.png" type="Texture" id=3]
+[ext_resource path="res://Imagens/n5.png" type="Texture" id=4]
+[ext_resource path="res://Imagens/Fundo.png" type="Texture" id=5]
+[ext_resource path="res://textures/particle_examples/floaty_64.png" type="Texture" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0740741, 0.925926, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.285784, 0.118134, 0.617188, 1, 0.448721, 0.331879, 0.679688, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 100.0
+angle_random = 1.0
+color_ramp = SubResource( 3 )
+anim_speed = 1.0
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -0.0594788
+margin_right = 6.0
+margin_bottom = 14.9406
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fundo_preto" type="Sprite" parent="."]
+position = Vector2( 514.46, 302.583 )
+scale = Vector2( 0.538259, 0.649358 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Personagem" type="Sprite" parent="."]
+position = Vector2( 516.322, 371.878 )
+scale = Vector2( 1.55646, 1.61607 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( -21.2659, -141.267 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( 17.9303, -141.465 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514.345, 496.279 )
+scale = Vector2( 0.0624784, 0.0624784 )
+texture = ExtResource( 4 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 264.113
+margin_top = 193.989
+margin_right = 770.113
+margin_bottom = 433.989
+color = Color( 1, 1, 1, 0.0588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="ColorRect"]
+margin_left = 174.573
+margin_top = 180.453
+margin_right = 338.573
+margin_bottom = 219.453
+custom_fonts/font = SubResource( 5 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Som" type="Button" parent="ColorRect"]
+margin_left = 174.078
+margin_top = 118.524
+margin_right = 338.078
+margin_bottom = 157.524
+custom_fonts/font = SubResource( 5 )
+text = "Som"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ranking" type="Button" parent="ColorRect"]
+margin_left = 172.576
+margin_top = 57.5918
+margin_right = 336.576
+margin_bottom = 96.5918
+custom_fonts/font = SubResource( 5 )
+text = "Ranking"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="ColorRect/Start" to="." method="start_jogo"]
+[connection signal="pressed" from="ColorRect/Som" to="." method="chamar_configsom"]
+[connection signal="pressed" from="ColorRect/Ranking" to="." method="chamar_ranking"]

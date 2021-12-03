@@ -1,0 +1,189 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Script/script_inicio.gd" type="Script" id=1]
+[ext_resource path="res://Font/Roboto-Black.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Imagens/MENU.png" type="Texture" id=3]
+[ext_resource path="res://Imagens/n5.png" type="Texture" id=4]
+[ext_resource path="res://Imagens/Fundo.png" type="Texture" id=5]
+[ext_resource path="res://textures/particle_examples/floaty_64.png" type="Texture" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.0740741, 0.925926, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.285784, 0.118134, 0.617188, 1, 0.448721, 0.331879, 0.679688, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 100.0
+angle_random = 1.0
+color_ramp = SubResource( 3 )
+anim_speed = 1.0
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -0.0594788
+margin_right = 6.0
+margin_bottom = 14.9406
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fundo_preto" type="Sprite" parent="."]
+position = Vector2( 514.46, 302.583 )
+scale = Vector2( 0.538259, 0.649358 )
+texture = ExtResource( 5 )
+
+[node name="Personagem" type="Sprite" parent="."]
+position = Vector2( 516.322, 371.878 )
+scale = Vector2( 1.55646, 1.61607 )
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( -21.2659, -141.267 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="Personagem"]
+material = SubResource( 1 )
+position = Vector2( 17.9303, -141.465 )
+scale = Vector2( 0.279118, 0.268823 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 4 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 514.345, 496.279 )
+scale = Vector2( 0.0624784, 0.0624784 )
+texture = ExtResource( 4 )
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 264.113
+margin_top = 193.989
+margin_right = 770.113
+margin_bottom = 433.989
+color = Color( 1, 1, 1, 0.0588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect"]
+margin_left = 74.2599
+margin_top = 29.9117
+margin_right = 168.26
+margin_bottom = 78.9117
+theme = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 7 )
+text = "E-mail:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ColorRect"]
+margin_left = 75.7196
+margin_top = 71.825
+margin_right = 169.72
+margin_bottom = 119.825
+theme = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 8 )
+text = "Senha:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="email" type="LineEdit" parent="ColorRect"]
+margin_left = 165.064
+margin_top = 31.002
+margin_right = 364.064
+margin_bottom = 55.002
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="senha" type="LineEdit" parent="ColorRect"]
+margin_left = 164.654
+margin_top = 75.806
+margin_right = 363.654
+margin_bottom = 99.806
+secret = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -142.152
+margin_top = -90.297
+margin_right = 21.8485
+margin_bottom = -51.297
+rect_scale = Vector2( 0.800002, 0.800002 )
+custom_fonts/font = SubResource( 9 )
+text = "Entrar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sair" type="Button" parent="ColorRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 19.5838
+margin_top = -90.887
+margin_right = 183.584
+margin_bottom = -51.8865
+rect_scale = Vector2( 0.82956, 0.82956 )
+custom_fonts/font = SubResource( 9 )
+text = "Sair"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="ColorRect/Button" to="." method="enviar_requisicao"]
+[connection signal="pressed" from="ColorRect/Sair" to="." method="fechar_jogo"]
